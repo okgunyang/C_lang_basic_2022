@@ -385,55 +385,514 @@ while(조건식){
 
 
 ## 함수(function)
+    함수란 프로그래밍에서 하나의 특별한 목적의 작업을 수행하기 위해 독립적으로 설계된 프로그램 코드의 집합이라고 할 수 있으며, C 프로그램은 이러한 함수들로 구성되어 처리에 필요한 여러 기능을 작성할 수 있도록 한다.
+
+### 함수의 장점
+1. 반복적인 프로그래밍을 방지할 수 있다.
+2. 복잡한 기능을 하나의 이름으로 정의하여 사용할 수 있다.
+3. 모듈화로 인하여 전체적인 프로그램의 가독성을 높일 수 있다.
+4. 프로그램이 문제가 발생하거나 기능의 변동이 있을 경우 함수를 수정하면, 쉽게 유지보수 할 수 있다.
+
+### 함수의 정의
+![함수의정의규칙](c_function1.png)
+1. 반환 타입 : 함수가 요구 기능을 위한 작업이 완료하게 되면, 그 결과를 반환하는 데이터 타입을 명시한다.
+2. 함수 이름 : 필요시 호출하게 될 함수의 이름을 명시한다.
+3. 매개변수 목록 : 파라미터(parameter) 라고도 하며, 함수 호출 시에 함수에게 데이터를 전달할 필요성이 있을 경우 저장할 변수를 명시한다.
+4. 함수 몸체 : 함수에서 필요한 기능을 처리하기 위한 하나 이상의 여러 명령문을 명시한다.
 
 ### 매개변수와 리턴이 없는 함수
+```C
+void 함수명() {
+    처리구문;
+}
+```
+
 
 ### 매개변수는 있으며, 리턴이 없는 함수
+```C
+void 함수명(데이터타입 매개변수1[, 데이터타입 매개변수2,....]) {
+    처리구문;
+}
+```
+
 
 ### 매개변수는 없고, 리턴이 있는 함수
+```C
+반환타입 함수명() {
+    처리구문;
+    return 반환타입에 맞는 변수 또는 값;
+}
+```
+
 
 ### 매개변수와 리턴이 모두 있는 함수
+```C
+반환타입 함수명(데이터타입 매개변수1[, 데이터타입 매개변수2,....]) {
+    처리구문;
+    return 반환타입에 맞는 변수 또는 값;
+}
+```
+
 
 ### 자기호출함수(recursive call back function)
-
+    자기호출함수란, 함수 내부에서 자기 자신을 반복하여 호출하도록 하게 하므로써 실행을 여러 번 처리할 수 있도록 설계된 함수를 의미한다.
+```C
+반환타입 자기호출함수명(데이터타입 매개변수1[, 데이터타입 매개변수2,....]) {
+    처리구문;
+    return 자기호출함수명;
+}
+```    
 
 
 -------------------------------------------------------------
 
 
 ## 배열(Array)
+    같은 데이터 타입을 갖는 여러 개의 데이터 저장체인 변수를 하나의 같은 이름으로 묶고, 데이터는 순번(index)이라는 위치를 나타내는 번호에 맞도록 각 각 데이터를 저장하도록 하는 복수 데이터의 저장소를 말하며, 순번(index) 은 0부터 시작하여 양의 정수만을 가질 수 있다.
+    
 
 ### 1차원 배열
+```C
+데이터타입  배열이름[배열길이];     //배열 선언
+배열이름[인덱스] = 값;             //값 초기화 및 할당
+```
+
+```C
+데이터타입  배열이름[배열길이] = {값1, 값2,..};     //배열 선언 및 초기화
+```
+
+```C
+데이터타입  배열이름[] = {값1, 값2,..};     //배열 선언 및 초기화
+```
 
 ### 2차원 배열
+```C
+데이터타입  배열이름[행의개수][열의개수];     //배열 선언
+배열이름[행인덱스][열인덱스] = 값;             //값 초기화 및 할당
+```
+
+```C
+데이터타입  배열이름[행의개수][열의개수] = {{값1, 값2,..},{값1, 값2,..},....};     //배열 선언 및 초기화
+```
+
+```C
+데이터타입  배열이름[][] = {{값1, 값2,..},{값1, 값2,..},....};     //배열 선언 및 초기화
+```
 
 ### 3차원 배열
+```C
+데이터타입  배열이름[면의개수][행의개수][열의개수];     //배열 선언
+배열이름[면인덱스][행인덱스][열인덱스] = 값;             //값 초기화 및 할당
+```
+
+```C
+데이터타입  배열이름[면의개수][행의개수][열의개수] = {{{값1, 값2,..},{값1, 값2,..},{값1, 값2,..}},....};     //배열 선언 및 초기화
+```
+
+```C
+데이터타입  배열이름[][][] = {{{값1, 값2,..},{값1, 값2,..},{값1, 값2,..}},....};     //배열 선언 및 초기화
+```
 
 ### 배열과 반복수행
+![2차원배열](c_array2.png)
+![2차원배열메모리구조](c_array3.png)
 
+```C
+int arr[2][3] = {{10, 20, 30}, {40, 50, 60}}; 
+for(int i=0;i<2;i++){
+    for(int j=0;j<3;j++){
+        printf(arr[i][j]+"\t");
+    }
+    printf("\n");
+}
+```
 
 -------------------------------------------------------------
 
 
-## 알고리즘
+## 알고리즘(Algorithm)
+    어떠한 문제를 해결하기 위한 일련의 절차나 방법을 공식화한 형태로 표현한 것을 의미하며, 이러한 문제 해결 방법 중에서 정확성과 효율성 등을 평가하여 최적의 알고리즘을 선택하여 프로그래밍하도록 한다.
+
+### 알고리즘의 조건
+1. 입력 : 외부에서 제공되는 자료가 0개 이상 존재한다.
+2. 출력 : 적어도 2개 이상의 서로 다른 결과를 내어야 한다.
+3. 명확성 : 수행 과정은 명확하고 모호하지 않은 명령어로 구성되어야 한다.
+4. 유한성 : 유한 횟수의 명령어를 수행 후 특정 시간 내에 종료한다.
+5. 효율성 : 모든 과정은 명백하게 실행 가능하거나 검증 가능 한 것이어야 한다.
+
 
 ### 순위 구하기
+```C
+int rank[5] = {1,1,1,1,1};      //모든 순위는 1위 부터 시작
+for(int i=0;i<5;i++){
+    for(int j=0;j<5;j++) {
+        if(tot[i]<tot[j]) rank[i] += 1; //순위를 구하는 사람의 총점보다 비교가 되는 총점이 더 클 경우, 해당 사람의 순위는 1씩 증가된다.
+    }
+}
+```
 
 ### 최대값 구하기
+```C
+int jum[5] = {90, 100, 80, 70, 60};
+int max = 0;
+for(int i=0;i<5;i++){
+    if(jum[i]>max) max=jum[i]; //순회하여 최대값보다 더 큰 점수를 최대값으로 한다.
+}
+```
+
 
 ### 최소값 구하기
+```C
+int jum[5] = {90, 100, 80, 70, 60};
+int min = 100;
+for(int i=0;i<5;i++){
+    if(jum[i]<min) min=jum[i]; //순회하여 최소값보다 더 작은 점수를 최소값으로 한다.
+}
+```
 
 ### 정렬(sort)하기
+    정렬(Sort)란, 데이터를 순서대로 재배치하는 것을 의미하며, 점 점 값이 커지는 오름차순과 점 점 값이 작아지는 내림차순으로 나눌 수 있으며, 이러한 정렬을 구현하는 방법에는 순차(Sequence) 정렬, 선택(Selection) 정렬, 삽입(Insertion) 정렬, 버블(Bubble) 정렬, 병합(Merge) 정렬, 힙(Heap) 정렬, 퀵(Quick) 정렬, 기수(Radix) 정렬 등이 있다.
+
+```C
+//순차(Sequence) 정렬
+int jum[5] = {90, 100, 80, 70, 60};
+int imsi;
+for(int i=0;i<5;i++){
+    for(int j=0;j<5;j++) {
+        if(jum[i]<jum[j]) { //오름차순 정렬하는 경우 작은 값이 있는 경우 값을 교체한다.
+            imsi = jum[i];
+            jum[i] = jum[j];
+            jum[j] = imsi;
+        }
+    }
+}
+```
+
+```C
+//선택(Selection) 정렬
+int jum[5] = {90, 100, 80, 70, 60};
+int imsi;
+for(int i=0;i<5;i++){
+    for(int j=i+1;j<5;j++) {
+        if(jum[i]<jum[j]) { //오름차순 정렬하는 경우 작은 값이 있는 경우 값을 교체한다.
+            imsi = jum[i];
+            jum[i] = jum[j];
+            jum[j] = imsi;
+        }
+    }
+}
+```
+
+```C
+//버블(Bubble) 정렬
+int jum[5] = {90, 100, 80, 70, 60};
+int imsi;
+for(int i=0;i<5;i++){
+    for(int j=0;j<4-i;j++) {
+        if(jum[j]<jum[j+1]) { //오름차순 정렬하는 경우 작은 값이 있는 경우 값을 교체한다.
+            imsi = jum[j];
+            jum[j] = jum[j+1];
+            jum[j+1] = imsi;
+        }
+    }
+}
+```
+
+```C
+void quickSort(int arr[], int L, int R) {
+//퀵(Quick) 정렬
+int left = L, right = R;
+int pivot = arr[(L + R) / 2];    // pivot(기준값) 설정 (가운데) 
+int temp;
+do {
+    while (arr[left] < pivot)    
+        left++;
+    while (arr[right] > pivot)   
+            right--;
+    if (left<= right) {
+        temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+        /*left 오른쪽으로 한칸, right 왼쪽으로 한칸 이동*/
+        left++;
+        right--;
+    }
+  } while (left<= right);
+ 
+    /* 재귀처리 */
+    if (L < right)
+        quickSort(arr, L, right);    // 왼쪽 배열 재귀적으로 반복 
+ 
+    if (left < R)
+        quickSort(arr, left, R);    // 오른쪽 배열 재귀적으로 반복
+}
+void main(){
+    int arr[5] = {90, 100, 80, 70, 60};
+    quickSort(arr, 0, 4);
+}
+```
+
+```C
+//힙(Heap) 정렬
+//heapify, 힙 상태 만들기 
+void heapify(int *arr, int size){
+	for(int i=1;i<size;++i){
+		int child = i;
+		do{
+			//자식 노드가 부모 노드보다 크면 교환
+			int root = (child-1)/2;
+			if(arr[root]<arr[child]){
+				int temp = arr[root];
+				arr[root] = arr[child];
+				arr[child] = temp;
+			}
+			child = root;
+		}while(child!=0);	//최상단 노드까지 점검
+	}
+}
+
+//최상단 노드와 최하단 노드 교체
+void heap(int *arr, int *size){
+	int temp = arr[0];
+	arr[0] = arr[*size-1];
+	arr[*size-1] = temp;
+	--(*size);
+}
+
+int main(){
+	
+	int size = 10;
+	//무작위 배열
+	int arr[10] = {7, 5, 9, 6, 3, 8, 7, 10, 2, 1};
+	
+	//힙정렬
+	for(int i=0;i<10;++i){
+		heapify(arr, size);
+		heap(arr, &size);
+	}
+	
+	//출력 
+	for(int i=0;i<10;++i){
+		printf("%d ", arr[i]);
+	}
+	
+	return 0;
+}
+```
+
+
+```C
+//래딕스(Radix) 정렬
+//heapify, 힙 상태 만들기
+#include <stdio.h>
+#define MAX 20
+int queue[MAX];
+int front, rear = 0;
+int put(int k){
+    printf("QUEUE OVER FLOW!\n\n");
+    if((rear+1) % MAX == front){        
+        return -1;    
+    } else {        
+        queue[rear] = k;        
+        rear = ++rear % MAX;        
+        return 1;    
+    }
+}
+int get(){    
+    int k;    
+    if(front == rear){        
+        printf("QUEUE UNDER FLOW!\n\n");        
+        return -1;    
+    } else {        
+        k = queue[front];        
+        front = ++front % MAX;        
+        return k;    
+    }
+}
+
+void radix_sort(int array[], int size){    
+    int max = array[0];
+    int digit = 0;    
+    int factor = 1;    
+    for(int i=1; i<size; i++){        
+        if(max<array[i]) max = array[i];
+    }
+    for(int i=max; i>0;i/=10){        
+        digit++;    
+    }    
+    for(int i =0; i<digit; i++){         
+        for(int j=0; j<10; j++){ // 0~9             
+            for(int k=0; k<size; k++){                
+                if((array[k]/factor)%10==j){                    
+                    put(array[k]);                
+                }            
+            }        
+        }        
+        factor *=10;        
+        for(int i=front; i!=rear; i++){            
+            array[i] =get();        
+        }        
+        printf("########### %d ROUND ###########\n",i+1);        print_array(array,size);
+        front=rear=0;    
+    }
+}
+
+void main(){
+    int array[] = {7, 5, 9, 6, 3, 8, 7, 10, 2, 1};    
+    int size = sizeof(array)/sizeof(int);    
+    radix_sort(array, size);
+}
+```
+
+-------------------------------------------------------------
+
+
+## 포인터(Pointer)
+    포인터란, 데이터 주소 중에서 데이터가 저장된 메모리의 시작 주소를 의미하며, C언어는 주소값을 바이트 단위로 공간을 나누어 표현하게 된다. 이에 메모리의 주소값을 저장하기 위한 포인터 변수로 해당 데이터의 위치를 통하여 데이터에 접근할 수 있음
+
+![포인터개념주소](c_pointer_address2.png)
+
+### 포인터 연산자
+&변수명 : 주소 연산자로서 해당 변수의 주소값을 반환
+*변수명 : 참조 연산자로서 해당 변수의 주소에 저장된 데이터를 반환
+
+### 포인터의 선언 및 초기화
+```C
+타입*  포인터변수명;    //선언
+타입*  포인터변수명 = &변수이름;    //선언과 초기화
+타입*  포인터변수명 = 주소값;       //선언과 초기화2
+```
+
+```C
+int x = 7;        // 변수의 선언
+int *ptr = &x;    // 포인터의 선언
+int *pptr = &ptr; // 포인터의 참조
+```
+![포인터선언및참조](c_pointer_address3.png)
+
+포인터 예시
+```C
+int num01 = 1234;
+double num02 = 3.14;  
+int* ptr_num01 = &num01;
+double* ptr_num02 = &num02; 
+
+printf("포인터의 크기는 %d입니다.\n", sizeof(ptr_num01));
+printf("포인터 ptr_num01이 가리키고 있는 주소값은 %#x입니다.\n", ptr_num01);
+printf("포인터 ptr_num02가 가리키고 있는 주소값은 %#x입니다.\n", ptr_num02);
+printf("포인터 ptr_num01이 가리키고 있는 주소에 저장된 값은 %d입니다.\n", *ptr_num01);
+printf("포인터 ptr_num02가 가리키고 있는 주소에 저장된 값은 %f입니다.\n", *ptr_num02);
+```
 
 
 -------------------------------------------------------------
 
 
-## 포인터
+## 구조체(Structure type)
+    구조체란, 배열과 같이 여러 데이터를 하나의 이름으로 저장할 경우에는 인덱스로 구분하므로 로딩되는 데이터가 어떤 데이터인지 정확히 알기가 힘들다. 그러한 경우, 하나의 변수에 각 각의 데이터가 가진 값들이 누구인지 알 수 있도록 하기 위해 멤버 변수를 두어 하나의 구조로 정의하여 활용하는 것을 말한다.
+
+### 구조체의 정의
+```C
+struct 구조체이름 {
+    멤버변수1의타입 멤버변수1의이름;
+    멤버변수2의타입 멤버변수2의이름;
+    ...
+};
+```
+
+![구조체정의](c_structure.png)
+
+예시
+```C
+struct book {       //구조체 이름은 book
+    char title[30];
+    char author[30];
+    int price;
+};      //book 구조체를 갖는 구조체 변수명은 my_book
+
+void main(){
+    struct book my_book = {"HTML과 CSS", "홍길동", 28000};
+    struct book java_book = {.title = "Java language", .price = 30000};  
+    printf("첫 번째 책의 제목은 %s이고, 저자는 %s이며, 가격은 %d원입니다.\n", my_book.title, my_book.author, my_book.price);
+    printf("두 번째 책의 제목은 %s이고, 저자는 %s이며, 가격은 %d원입니다.\n", java_book.title, java_book.author, java_book.price);
+}
+
+```
+
+-------------------------------------------------------------------
+
+## 공용체(Union Type)
+    공용체란, 같은 멤버 등을 공유하는 것으로 하나의 멤버만 가질 수 있는 구조체의 일종이다.
+![공용체메모리구조](c_struct_enum1.png)
+
+### 공용체의 활용
+```C
+typedef union {
+    데이터타입 멤버변수명;
+    ....
+} 멤버변수명;
+```
+
+예시
+```C
+typedef union {
+    unsigned char a;
+    unsigned short b;
+    unsigned int c;
+} SHAREDATA;
+
+void main(){
+    SHAREDATA var;
+    var.c = 0x12345678;  
+    printf("%x\n", var.a);
+    printf("%x\n", var.b);
+    printf("%x\n", var.c);
+}
+```
+
+## 열거형(Enumerated Type)
+    열거형이란, 여러 멤버 상수값을 가진 데이터를 데이터 변함없이 항상 같은 값을 가지는 열거 데이터를 하나의 묶음으로 활용하는 형태
+
+### 열거형의 선언
+```C
+enum 열거형이름 { 멤버상수명1=값1[, 멤버상수명2=값2],...};
+```
+
+### 열거형의 활용
+```C
+enum 열거형이름 변수명;
+변수명 = 멤버상수명;
+```
+
+예시
+```C
+enum Weather {SUNNY = 0, CLOUD = 10, RAIN = 20, SNOW = 30};  
+
+void main() {
+    enum Weather wt;  
+    wt = SUNNY;  
+
+    switch(wt) {
+        case SUNNY:
+            puts("오늘은 햇볕이 쨍쨍!");
+            break;
+        case CLOUD:
+            puts("비가 올락말락하네요!");
+            break;
+        case RAIN:
+            puts("비가 내려요.. 우산 챙기세요!");
+            break;
+        case SNOW:
+            puts("오늘은 눈싸움하는 날!");
+            break;
+        default: puts("도대체 무슨 날씨인건가요!!!");
+    }  
+    puts("각각의 열거체에 해당하는 정수값은 다음과 같습니다.");
+    printf("%d %d %d %d\n", SUNNY, CLOUD, RAIN, SNOW);
+}
+```
 
 
--------------------------------------------------------------
 
 
-## 구조체와 공용체
 
